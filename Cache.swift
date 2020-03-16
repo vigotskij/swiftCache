@@ -25,3 +25,46 @@ final class Cache<Key: Hashable, Value> {
         wrappedCache.delegate = keyTracker
     }
 }
+// MARK: - Wrapping classes for bridging between Obj-C NSCache and Swift elements
+private extension Cache {
+    final class WrappedKey: NSObject {
+        let key: Key
+        
+        init(_ key: Key) {
+            self.key = key
+        }
+        // MARK: - This var and func are the bridge between NSCache and Swift Cache
+        override var hash: Int { key.hashValue }
+        override func isEqual(_ object: Any?) -> Bool {
+            guard let value = object as? WrappedKey else {
+                return false
+            }
+            return key == value.key
+        }
+    }
+
+    final class CachedItem {
+        let key: Key
+        let value: Value
+        let expirationDate: Date
+
+        init(key: Key, value: Value, with expirationDate: Date) {
+            self.key = key
+            self.value = value
+            self.expirationDate = expirationDate
+        }
+    }
+}
+// MARK: - Cache + KeyTraker
+private extension Cache {
+    final class KeyTracker: NSObject, NSCacheDelegate {
+        var keys: Set<Key> = .init()
+        // MARK: - This function is called automaticaly just before erasing an element from cache
+        func cache(_ cache: NSCache<AnyObject, AnyObject>, willEvictObject obj: Any) {
+            guard let value = obj as? CachedItem else {
+                return
+            }
+            keys.remove(value.key)
+        }
+    }
+}
