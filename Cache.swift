@@ -152,3 +152,27 @@ private extension Cache {
         return item
     }
 }
+// MARK: - Cache + PersistentCacheable
+extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
+    func persist(withName name: String, using fileManager: FileManager = .default ) throws {
+        let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+        let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
+        do {
+            let data = try JSONEncoder().encode(self)
+            try data.write(to: fileURL)
+        } catch {
+            // Manage errors
+        }
+    }
+    func load(withName name: String, using fileManager: FileManager) throws {
+        let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+        let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let parsedData = try JSONDecoder().decode([CachedItem].self, from: data)
+            parsedData.forEach(setItem)
+        } catch {
+            // Manage errors
+        }
+    }
+}
