@@ -133,3 +133,22 @@ extension Cache: Codable where Key: Codable, Value: Codable {
         try container.encode(keyTracker.keys.compactMap(getItem))
     }
 }
+// MARK: - Cache functions to populate from and to persistent data
+private extension Cache {
+    func setItem(_ value: CachedItem) {
+        if value.expirationDate > dateProvider() {
+            wrappedCache.setObject(value, forKey: WrappedKey(value.key))
+            keyTracker.keys.insert(value.key)
+        }
+    }
+    func getItem(forKey key: Key) -> CachedItem? {
+        guard let item = wrappedCache.object(forKey: WrappedKey(key)) else {
+            return nil
+        }
+        guard item.expirationDate > dateProvider() else {
+            removeValue(forKey: key)
+            return nil
+        }
+        return item
+    }
+}
