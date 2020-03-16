@@ -68,3 +68,53 @@ private extension Cache {
         }
     }
 }
+// MARK: - VolatileCacheable implementation
+extension Cache: VolatileCacheable {
+    func setValue(_ value: Any?, forKey key: AnyHashable) {
+        guard let value = value as? Value,
+            let key = key as? Key else {
+            return
+        }
+        let wrappedKey = WrappedKey(key)
+        let expirationDate = dateProvider().addingTimeInterval(cacheLifetime)
+        let wrappedValue = CachedItem(key: key, value: value, with: expirationDate)
+        wrappedCache.setObject(wrappedValue, forKey: wrappedKey)
+        keyTracker.keys.insert(wrappedKey.key)
+    }
+
+    func getValue(forKey key: AnyHashable) -> Any? {
+        guard let key = key as? Key,
+            let wrappedValue = wrappedCache.object(forKey: WrappedKey(key)) else {
+                return nil
+        }
+        guard wrappedValue.expirationDate > dateProvider() else {
+            removeValue(forKey: key)
+            return nil
+        }
+        return wrappedValue.value
+    }
+
+    func removeValue(forKey key: AnyHashable) {
+        guard let key = key as? Key else {
+            return
+        }
+        wrappedCache.removeObject(forKey: WrappedKey(key))
+    }
+
+    func getKeys() -> Set<AnyHashable> {
+        return keyTracker.keys as Set<Key>
+    }
+
+    subscript(key: AnyHashable) -> Any? {
+        get {
+            return getValue(forKey: key)
+        }
+        set {
+            guard let value = newValue else {
+                self.removeValue(forKey: key)
+                return
+            }
+            setValue(value, forKey: key)
+        }
+    }
+}
