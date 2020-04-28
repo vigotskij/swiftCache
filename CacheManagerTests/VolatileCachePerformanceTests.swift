@@ -10,7 +10,7 @@ import XCTest
 @testable import CacheManager
 
 class VolatileCachePerformanceTests: XCTestCase {
-    var sut: VolatileCacheable = Cache<String, TestingFuel>(maximumCachedValues: 1000000)
+    let sut: VolatileCacheable = Cache<String, TestingFuel>(maximumCachedValues: 1000000)
 
     struct TestingFuel: Equatable {
         var key: String = ""

@@ -11,7 +11,7 @@ import XCTest
 
 class VolatileCacheTests: XCTestCase {
     
-    var sut: VolatileCacheable = Cache<String, TestingFuel>()
+    let sut: VolatileCacheable = Cache<String, TestingFuel>()
     
     struct TestingFuel: Equatable {
         var key: String = ""
