@@ -4,6 +4,7 @@
 //  Created by Boris Sortino on 25/02/2020.
 //  Copyright © 2020 Boris Sortin.
 //
+import Foundation
 
 final class Cache<Key: Hashable, Value> {
     private let wrappedCache = NSCache<WrappedKey, CachedItem>()
@@ -154,17 +155,17 @@ private extension Cache {
 }
 // MARK: - Cache + PersistentCacheable
 extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
-    func persist(withName name: String, using fileManager: FileManager = .default ) throws {
+    func persist(withName name: String, using fileManager: FileManager = .default, completionHandler: (Result<Bool, Error>) -> Void) throws {
         let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
             let data = try JSONEncoder().encode(self)
             try data.write(to: fileURL)
         } catch {
-            // Manage errors
+            completionHandler(.failure(error))
         }
     }
-    func load(withName name: String, using fileManager: FileManager) throws {
+    func load(withName name: String, using fileManager: FileManager, completionHandler: (Result<Bool, Error>) -> Void) throws {
         let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
@@ -172,7 +173,7 @@ extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
             let parsedData = try JSONDecoder().decode([CachedItem].self, from: data)
             parsedData.forEach(setItem)
         } catch {
-            // Manage errors
+            completionHandler(.failure(error))
         }
     }
 }
