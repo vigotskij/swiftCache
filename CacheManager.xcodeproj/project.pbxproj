@@ -14,6 +14,7 @@
 		A10E3006245089C300EE3EDA /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3005245089C300EE3EDA /* Cache.swift */; };
 		A10E300824508C1300EE3EDA /* VolatileCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */; };
 		A19E36F1245338EB009AE90B /* PersistentCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */; };
+		A1AE30732458B8F600112215 /* PersistentCachePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE30722458B8F600112215 /* PersistentCachePerformanceTests.swift */; };
 		A1DC01EF2452097C00AF98AB /* VolatileCachePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		A10E3005245089C300EE3EDA /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatileCacheTests.swift; sourceTree = "<group>"; };
 		A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentCacheTests.swift; sourceTree = "<group>"; };
+		A1AE30722458B8F600112215 /* PersistentCachePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentCachePerformanceTests.swift; sourceTree = "<group>"; };
 		A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatileCachePerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 				A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */,
 				A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */,
 				A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */,
+				A1AE30722458B8F600112215 /* PersistentCachePerformanceTests.swift */,
 			);
 			path = CacheManagerTests;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				A10E300824508C1300EE3EDA /* VolatileCacheTests.swift in Sources */,
 				A1DC01EF2452097C00AF98AB /* VolatileCachePerformanceTests.swift in Sources */,
+				A1AE30732458B8F600112215 /* PersistentCachePerformanceTests.swift in Sources */,
 				A19E36F1245338EB009AE90B /* PersistentCacheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
