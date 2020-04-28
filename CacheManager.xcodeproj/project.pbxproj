@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10E2FF12450894A00EE3EDA /* CacheManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E2FE72450894A00EE3EDA /* CacheManager.framework */; };
+		A10E2FF82450894A00EE3EDA /* CacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A10E2FEA2450894A00EE3EDA /* CacheManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A10E3002245089A100EE3EDA /* PersistentCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3001245089A100EE3EDA /* PersistentCacheable.swift */; };
+		A10E3004245089B300EE3EDA /* VolatileCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3003245089B300EE3EDA /* VolatileCacheable.swift */; };
+		A10E3006245089C300EE3EDA /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3005245089C300EE3EDA /* Cache.swift */; };
+		A10E300824508C1300EE3EDA /* VolatileCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */; };
+		A19E36F1245338EB009AE90B /* PersistentCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */; };
+		A1DC01EF2452097C00AF98AB /* VolatileCachePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10E2FF22450894A00EE3EDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10E2FDE2450894A00EE3EDA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10E2FE62450894A00EE3EDA;
+			remoteInfo = CacheManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A10E2FE72450894A00EE3EDA /* CacheManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CacheManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10E2FEA2450894A00EE3EDA /* CacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		A10E2FEB2450894A00EE3EDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10E2FF02450894A00EE3EDA /* CacheManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CacheManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10E2FF72450894A00EE3EDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10E3001245089A100EE3EDA /* PersistentCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCacheable.swift; sourceTree = "<group>"; };
+		A10E3003245089B300EE3EDA /* VolatileCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolatileCacheable.swift; sourceTree = "<group>"; };
+		A10E3005245089C300EE3EDA /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatileCacheTests.swift; sourceTree = "<group>"; };
+		A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentCacheTests.swift; sourceTree = "<group>"; };
+		A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatileCachePerformanceTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10E2FE42450894A00EE3EDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10E2FED2450894A00EE3EDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10E2FF12450894A00EE3EDA /* CacheManager.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10E2FDD2450894A00EE3EDA = {
+			isa = PBXGroup;
+			children = (
+				A10E2FE92450894A00EE3EDA /* CacheManager */,
+				A10E2FF42450894A00EE3EDA /* CacheManagerTests */,
+				A10E2FE82450894A00EE3EDA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10E2FE82450894A00EE3EDA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10E2FE72450894A00EE3EDA /* CacheManager.framework */,
+				A10E2FF02450894A00EE3EDA /* CacheManagerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10E2FE92450894A00EE3EDA /* CacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				A10E3001245089A100EE3EDA /* PersistentCacheable.swift */,
+				A10E3003245089B300EE3EDA /* VolatileCacheable.swift */,
+				A10E3005245089C300EE3EDA /* Cache.swift */,
+				A10E2FEA2450894A00EE3EDA /* CacheManager.h */,
+				A10E2FEB2450894A00EE3EDA /* Info.plist */,
+			);
+			path = CacheManager;
+			sourceTree = "<group>";
+		};
+		A10E2FF42450894A00EE3EDA /* CacheManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10E2FF72450894A00EE3EDA /* Info.plist */,
+				A10E300724508C1300EE3EDA /* VolatileCacheTests.swift */,
+				A1DC01EE2452097C00AF98AB /* VolatileCachePerformanceTests.swift */,
+				A19E36F0245338EB009AE90B /* PersistentCacheTests.swift */,
+			);
+			path = CacheManagerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A10E2FE22450894A00EE3EDA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10E2FF82450894A00EE3EDA /* CacheManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A10E2FE62450894A00EE3EDA /* CacheManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10E2FFB2450894A00EE3EDA /* Build configuration list for PBXNativeTarget "CacheManager" */;
+			buildPhases = (
+				A10E2FE22450894A00EE3EDA /* Headers */,
+				A10E2FE32450894A00EE3EDA /* Sources */,
+				A10E2FE42450894A00EE3EDA /* Frameworks */,
+				A10E2FE52450894A00EE3EDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CacheManager;
+			productName = CacheManager;
+			productReference = A10E2FE72450894A00EE3EDA /* CacheManager.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A10E2FEF2450894A00EE3EDA /* CacheManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10E2FFE2450894A00EE3EDA /* Build configuration list for PBXNativeTarget "CacheManagerTests" */;
+			buildPhases = (
+				A10E2FEC2450894A00EE3EDA /* Sources */,
+				A10E2FED2450894A00EE3EDA /* Frameworks */,
+				A10E2FEE2450894A00EE3EDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10E2FF32450894A00EE3EDA /* PBXTargetDependency */,
+			);
+			name = CacheManagerTests;
+			productName = CacheManagerTests;
+			productReference = A10E2FF02450894A00EE3EDA /* CacheManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10E2FDE2450894A00EE3EDA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Boris Sortino";
+				TargetAttributes = {
+					A10E2FE62450894A00EE3EDA = {
+						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
+					};
+					A10E2FEF2450894A00EE3EDA = {
+						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
+					};
+				};
+			};
+			buildConfigurationList = A10E2FE12450894A00EE3EDA /* Build configuration list for PBXProject "CacheManager" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10E2FDD2450894A00EE3EDA;
+			productRefGroup = A10E2FE82450894A00EE3EDA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10E2FE62450894A00EE3EDA /* CacheManager */,
+				A10E2FEF2450894A00EE3EDA /* CacheManagerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10E2FE52450894A00EE3EDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10E2FEE2450894A00EE3EDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10E2FE32450894A00EE3EDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10E3004245089B300EE3EDA /* VolatileCacheable.swift in Sources */,
+				A10E3006245089C300EE3EDA /* Cache.swift in Sources */,
+				A10E3002245089A100EE3EDA /* PersistentCacheable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10E2FEC2450894A00EE3EDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10E300824508C1300EE3EDA /* VolatileCacheTests.swift in Sources */,
+				A1DC01EF2452097C00AF98AB /* VolatileCachePerformanceTests.swift in Sources */,
+				A19E36F1245338EB009AE90B /* PersistentCacheTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10E2FF32450894A00EE3EDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10E2FE62450894A00EE3EDA /* CacheManager */;
+			targetProxy = A10E2FF22450894A00EE3EDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A10E2FF92450894A00EE3EDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A10E2FFA2450894A00EE3EDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A10E2FFC2450894A00EE3EDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = A2K8AKR8G9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CacheManager/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vigotskij.CacheManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10E2FFD2450894A00EE3EDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = A2K8AKR8G9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CacheManager/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vigotskij.CacheManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A10E2FFF2450894A00EE3EDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A2K8AKR8G9;
+				INFOPLIST_FILE = CacheManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vigotskij.CacheManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10E30002450894A00EE3EDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A2K8AKR8G9;
+				INFOPLIST_FILE = CacheManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vigotskij.CacheManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10E2FE12450894A00EE3EDA /* Build configuration list for PBXProject "CacheManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10E2FF92450894A00EE3EDA /* Debug */,
+				A10E2FFA2450894A00EE3EDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10E2FFB2450894A00EE3EDA /* Build configuration list for PBXNativeTarget "CacheManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10E2FFC2450894A00EE3EDA /* Debug */,
+				A10E2FFD2450894A00EE3EDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10E2FFE2450894A00EE3EDA /* Build configuration list for PBXNativeTarget "CacheManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10E2FFF2450894A00EE3EDA /* Debug */,
+				A10E30002450894A00EE3EDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10E2FDE2450894A00EE3EDA /* Project object */;
+}

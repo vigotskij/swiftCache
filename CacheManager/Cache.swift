@@ -2,11 +2,10 @@
 //  Cache.swift
 //
 //  Created by Boris Sortino on 25/02/2020.
-//  Copyright © 2020 Boris Sortin.
+//  Copyright © 2020 Boris Sortino.
 //
-import Foundation
 
-final class Cache<Key: Hashable, Value> {
+public final class Cache<Key: Hashable, Value> {
     private let wrappedCache = NSCache<WrappedKey, CachedItem>()
     private let dateProvider: () -> Date
     private let cacheLifetime: TimeInterval
@@ -122,14 +121,14 @@ extension Cache: VolatileCacheable {
 // MARK: - Cache + Codable
 extension Cache.CachedItem: Codable where Key: Codable, Value: Codable {}
 extension Cache: Codable where Key: Codable, Value: Codable {
-    convenience init(from decoder: Decoder) throws {
+    convenience public init(from decoder: Decoder) throws {
         self.init()
 
         let container = try decoder.singleValueContainer()
         let entries = try container.decode([CachedItem].self)
         entries.forEach(setItem)
     }
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(keyTracker.keys.compactMap(getItem))
     }
@@ -155,25 +154,27 @@ private extension Cache {
 }
 // MARK: - Cache + PersistentCacheable
 extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
-    func persist(withName name: String, using fileManager: FileManager = .default, completionHandler: (Result<Bool, Error>) -> Void) throws {
+    @discardableResult func persist(withName name: String, using fileManager: FileManager = .default) -> Result<Bool, Error>  {
         let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
             let data = try JSONEncoder().encode(self)
             try data.write(to: fileURL)
+            return .success(true)
         } catch {
-            completionHandler(.failure(error))
+            return .failure(error)
         }
     }
-    func load(withName name: String, using fileManager: FileManager, completionHandler: (Result<Bool, Error>) -> Void) throws {
+    func load(withName name: String, using fileManager: FileManager) -> Result<Bool, Error> {
         let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
             let data = try Data(contentsOf: fileURL)
             let parsedData = try JSONDecoder().decode([CachedItem].self, from: data)
             parsedData.forEach(setItem)
+            return .success(true)
         } catch {
-            completionHandler(.failure(error))
+            return .failure(error)
         }
     }
 }
