@@ -15,15 +15,16 @@ class VolatileCacheTests: XCTestCase {
     
     struct TestingFuel: Equatable {
         var key: String = ""
-        var value: String = ""
+    }
+    enum Keys: String {
+        case store
+        case remove
+        case removeAll
     }
     var testingFuel: TestingFuel = .init()
 
     override func tearDown() {
-        let keys = sut.getKeys()
-        for key in keys {
-            sut.removeValue(forKey: key)
-        }
+        sut.clearVolatile()
         testingFuel = .init()
     }
     func testGetNil() {
@@ -31,21 +32,29 @@ class VolatileCacheTests: XCTestCase {
         XCTAssertEqual(result, nil)
     }
     func testGetStoredValue() {
-        testingFuel.key = "1"
-        testingFuel.value = "value to retrieve"
+        testingFuel.key = Keys.store.rawValue
         sut.setValue(testingFuel, forKey: testingFuel.key)
         let result = sut.getValue(forKey: testingFuel.key) as! TestingFuel
         XCTAssertEqual(result, testingFuel)
     }
     func testRemoveStoredValue() {
-        testingFuel.key = "2"
-        testingFuel.value = "value to remove"
+        testingFuel.key = Keys.remove.rawValue
         sut.setValue(testingFuel, forKey: testingFuel.key)
         let result = sut.getValue(forKey: testingFuel.key) as! TestingFuel
         XCTAssertEqual(result, testingFuel)
         sut.removeValue(forKey: testingFuel.key)
         let resultFromRemove = sut.getValue(forKey: testingFuel.key) as? TestingFuel
         XCTAssertEqual(resultFromRemove, nil)
+    }
+    func testRemoveAllStoredValues() {
+        testingFuel.key = Keys.removeAll.rawValue
+        sut.setValue(testingFuel, forKey: testingFuel.key)
+        let firstCheck = sut.getValue(forKey: testingFuel.key) as? TestingFuel
+        XCTAssertEqual(firstCheck, testingFuel)
+        let result = sut.clearVolatile()
+        XCTAssertTrue(result)
+        let secondCheck = sut.getValue(forKey: testingFuel.key)
+        XCTAssertNil(secondCheck)
     }
     func testGetKeysEmpty() {
         let result = sut.getKeys()
@@ -54,7 +63,7 @@ class VolatileCacheTests: XCTestCase {
     func testRetrieveSomeKeys() {
         var stop = 0
         while stop < 10 {
-            sut.setValue(TestingFuel(key: "\(stop)", value: "\(stop)"), forKey: "\(stop)")
+            sut.setValue(TestingFuel(key: "\(stop)"), forKey: "\(stop)")
             stop += 1
         }
         let result = sut.getKeys()
@@ -63,7 +72,7 @@ class VolatileCacheTests: XCTestCase {
     func testKeysOverflowing() {
         var stop = 0
         while stop < 100 {
-            sut.setValue(TestingFuel(key: "\(stop)", value: "\(stop)"), forKey: "\(stop)")
+            sut.setValue(TestingFuel(key: "\(stop)"), forKey: "\(stop)")
             stop += 1
         }
         let result = sut.getKeys()

@@ -10,7 +10,7 @@ import XCTest
 @testable import CacheManager
 
 class VolatileCachePerformanceTests: XCTestCase {
-    let sut: VolatileCacheable = Cache<String, TestingFuel>(maximumCachedValues: 1000000)
+    let sut: VolatileCacheable = Cache<String, TestingFuel>(maximumCachedValues: 100000)
 
     struct TestingFuel: Equatable {
         var key: String = ""
@@ -28,7 +28,7 @@ class VolatileCachePerformanceTests: XCTestCase {
     }
     override func tearDown() {
         testingFuelArray = []
-        clearVolatileCache()
+        sut.clearVolatile()
     }
     private func populateCache() {
         for item in testingFuelArray {
@@ -57,13 +57,7 @@ class VolatileCachePerformanceTests: XCTestCase {
     func testRemovePerformance() {
         measure {
             populateCache()
-            clearVolatileCache()
-        }
-    }
-    func clearVolatileCache() {
-        let keys = sut.getKeys()
-        for key in keys {
-            sut.removeValue(forKey: key)
+            sut.clearVolatile()
         }
     }
 }

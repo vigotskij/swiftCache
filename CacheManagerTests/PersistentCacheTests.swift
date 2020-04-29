@@ -20,10 +20,12 @@ class PersistentCacheTests: XCTestCase {
     enum CacheFileNames: String {
         case persistence
         case loading
+        case removing
     }
     override func tearDown() {
-        _ = sut.load(withName: CacheFileNames.loading.rawValue, using: .default)
-        _ = sut.load(withName: CacheFileNames.persistence.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: CacheFileNames.loading.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: CacheFileNames.persistence.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: CacheFileNames.removing.rawValue, using: .default)
         let keys = sut.getKeys()
         for key in keys {
             sut.removeValue(forKey: key)
@@ -48,6 +50,20 @@ class PersistentCacheTests: XCTestCase {
         sut.removeValue(forKey: "loading")
         let result = sut.load(withName: CacheFileNames.loading.rawValue, using: .default)
         switch result {
+        case .success(let success):
+            XCTAssertTrue(success)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+    func testClearPersistence() {
+        testingFuel.key = "removing"
+        sut.setValue(testingFuel, forKey: testingFuel.key)
+        sut.persist(withName: CacheFileNames.removing.rawValue, using: .default)
+        sut.removeValue(forKey: "removing")
+        XCTAssertTrue(sut.getKeys().isEmpty)
+        let removalResult = sut.clearPersistence(withName: CacheFileNames.removing.rawValue, using: .default)
+        switch removalResult {
         case .success(let success):
             XCTAssertTrue(success)
         case .failure(let error):

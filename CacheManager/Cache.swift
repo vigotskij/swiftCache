@@ -10,6 +10,7 @@ public final class Cache<Key: Hashable, Value> {
     private let dateProvider: () -> Date
     private let cacheLifetime: TimeInterval
     private let keyTracker: KeyTracker = .init()
+    private var cachePathDirectory: FileManager.SearchPathDirectory
 
     /// Default Initializer
     /// - Parameters:
@@ -23,6 +24,7 @@ public final class Cache<Key: Hashable, Value> {
         self.cacheLifetime = cacheLifetime
         wrappedCache.countLimit = maximumCachedValues
         wrappedCache.delegate = keyTracker
+        cachePathDirectory = .cachesDirectory
     }
 }
 // MARK: - Wrapping classes for bridging between Obj-C NSCache and Swift elements
@@ -117,6 +119,12 @@ extension Cache: VolatileCacheable {
             setValue(value, forKey: key)
         }
     }
+    @discardableResult func clearVolatile() -> Bool {
+        for key in getKeys() {
+            removeValue(forKey: key)
+        }
+        return getKeys().isEmpty
+    }
 }
 // MARK: - Cache + Codable
 extension Cache.CachedItem: Codable where Key: Codable, Value: Codable {}
@@ -154,8 +162,17 @@ private extension Cache {
 }
 // MARK: - Cache + PersistentCacheable
 extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
+    convenience init(dateProvider: @escaping () -> Date = Date.init,
+         cacheLifetime: TimeInterval = 43200,
+         maximumCachedValues: Int = 50,
+         cachePathDirectory: FileManager.SearchPathDirectory = .cachesDirectory) {
+        self.init(dateProvider: dateProvider,
+                  cacheLifetime: cacheLifetime,
+                  maximumCachedValues: maximumCachedValues)
+        self.cachePathDirectory = cachePathDirectory
+    }
     @discardableResult func persist(withName name: String, using fileManager: FileManager = .default) -> Result<Bool, Error>  {
-        let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+        let folderURLs = fileManager.urls(for: cachePathDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
             let data = try JSONEncoder().encode(self)
@@ -166,12 +183,22 @@ extension Cache: PersistentCacheable where Key: Codable, Value: Codable {
         }
     }
     func load(withName name: String, using fileManager: FileManager) -> Result<Bool, Error> {
-        let folderURLs = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+        let folderURLs = fileManager.urls(for: cachePathDirectory, in: .userDomainMask)
         let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
         do {
             let data = try Data(contentsOf: fileURL)
             let parsedData = try JSONDecoder().decode([CachedItem].self, from: data)
             parsedData.forEach(setItem)
+            return .success(true)
+        } catch {
+            return .failure(error)
+        }
+    }
+    @discardableResult func clearPersistence(withName name: String, using fileManager: FileManager) -> Result<Bool, Error> {
+        let folderURLs = fileManager.urls(for: cachePathDirectory, in: .userDomainMask)
+        let fileURL = folderURLs[0].appendingPathComponent(name + ".cache")
+        do {
+            try fileManager.removeItem(at: fileURL)
             return .success(true)
         } catch {
             return .failure(error)

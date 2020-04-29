@@ -10,7 +10,7 @@ import XCTest
 @testable import CacheManager
 
 class PersistentCachePerformanceTests: XCTestCase {
-    let sut: PersistentCacheable = Cache<String, TestingFuel>(maximumCachedValues: 1000000)
+    let sut: PersistentCacheable = Cache<String, TestingFuel>(maximumCachedValues: 100000)
     
     struct TestingFuel: Codable {
         var key = ""
@@ -18,6 +18,7 @@ class PersistentCachePerformanceTests: XCTestCase {
     enum PersistenceNames: String {
         case persist
         case load
+        case remove
     }
     override func setUp() {
         populateVolatileCache()
@@ -37,12 +38,18 @@ class PersistentCachePerformanceTests: XCTestCase {
             _ = sut.load(withName: PersistenceNames.load.rawValue, using: .default)
         }
     }
+    func testRemovePersistedData() {
+        measure {
+            sut.persist(withName: PersistenceNames.remove.rawValue, using: .default)
+            sut.clearPersistence(withName: PersistenceNames.remove.rawValue, using: .default)
+        }
+    }
 }
 // MARK: - Helper functions
 private extension PersistentCachePerformanceTests {
     func populateVolatileCache() {
         var stop = 0
-        while stop < 1000000 {
+        while stop < 100000 {
             sut.setValue(TestingFuel(key: "\(stop)"), forKey: "\(stop)")
             stop += 1
         }
@@ -53,7 +60,8 @@ private extension PersistentCachePerformanceTests {
         }
     }
     func clearPersistentCache() {
-        _ = sut.load(withName: PersistenceNames.persist.rawValue, using: .default)
-        _ = sut.load(withName: PersistenceNames.load.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: PersistenceNames.persist.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: PersistenceNames.load.rawValue, using: .default)
+        _ = sut.clearPersistence(withName: PersistenceNames.remove.rawValue, using: .default)
     }
 }
