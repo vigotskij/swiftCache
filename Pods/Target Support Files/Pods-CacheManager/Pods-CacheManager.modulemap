@@ -1,0 +1,6 @@
+framework module Pods_CacheManager {
+  umbrella header "Pods-CacheManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
