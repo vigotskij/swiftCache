@@ -1,9 +1,23 @@
+[![CI Status](https://img.shields.io/travis/vigotskij/SwiftfulCache.svg?style=flat)](https://travis-ci.org/vigotskij/SwiftfulCache)
+[![Version](https://img.shields.io/cocoapods/v/SwiftfulCache.svg?style=flat)](https://cocoapods.org/pods/SwiftfulCache)
+[![License](https://img.shields.io/cocoapods/l/SwiftfulCache.svg?style=flat)](https://cocoapods.org/pods/SwiftfulCache)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftfulCache.svg?style=flat)](https://cocoapods.org/pods/SwiftfulCache)
 # swiftCache
 Volatile and Persistent cache interfaces and implementation
 
-## Usage
-You have to build the project and then put the framework inside your own project.
+## Installation
 
+SwiftfulCache is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'SwiftfulCache'
+```
+
+
+Alternatively, you can build the project from this repository and then put the framework inside your own project.
+
+## Usage
 After that, you can use it importing the framework and initializing a specialized Cache, for example:  
 ```
  import CacheManager
@@ -27,11 +41,12 @@ For persistent cache, using the `.cachesDirectory` allows the system to clean th
 * Volatile performance tests for set, get, remove and get keys functions
 * Persistent parcial tests for both persist and load functions
 * Added basic error handling for persist and load functions
-
-## TODO
 * PersistentCacheable full test coverage for persist and load functions
 * PersistentCacheable performance tests
-* Make CacheManager Framework accesible from Cocoapods/Carthage
+* Make CacheManager Framework accesible from Cocoapods
+
+## TODO
+* Make CacheManager Framework accesible from Carthage
 
 ## References
 This was created inspired by the [work](https://www.swiftbysundell.com/articles/caching-in-swift/) of [John Sundell](https://github.com/JohnSundell).
