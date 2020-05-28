@@ -27,7 +27,7 @@ After that, you can use it importing the framework and initializing a specialize
   let persistentCache: PersistentCacheable = Cache<String, YourObject>()
   // or, just the Cache class, which has a few default values on the function signatures.
   // Using the Cache class will load both Volatile and Persistent Cache
-  let cache: Cache = .init()
+  let cache: Cache<String, YourObject> = .init()
  }
  ```
 
