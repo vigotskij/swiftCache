@@ -19,8 +19,7 @@ Alternatively, you can build the project from this repository and then put the f
 
 ## Usage
 After that, you can use it importing the framework and initializing a specialized Cache, for example:  
-```
- import CacheManager
+```swift
  class SomeClass {
   // You can use only the RAM Cache
   let volatileCache: VolatileCacheable = Cache<String, YourObject>()
